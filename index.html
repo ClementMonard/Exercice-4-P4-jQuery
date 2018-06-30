@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <script src ="jquery-3.2.1.js"></script>
+    <title>Exercice 4 P4</title>
+  </head>
+  <body>
+<form id="mainForm">
+  <label for="lastname">Nom :</label><input type="text" name="lastname" id="lastname" /><br />
+  <label for="firstname">Prénom :</label><input type="text" name="firstname" id="firstname" /><br />
+  <label for="dateBirth">Date de naissance :</label><input type="text" name="dateBirth" id="dateBirth" /><br />
+  <label for="cityBirth">Lieu de naissance :</label><input type="text" name="cityBirth" id="cityBirth" /><br />
+  <label for="job">Emploi :</label><input type="text" name="job" id="job" /><br />
+  <label for="society">Votre société</label><input type="text" name="society" id="society" /><br />
+  <button type="button" name="button" id="validation">Générer.</button>
+</form>
+  </body>
+  <script>
+  //Déclaration d'une fonction pour faire un formulaire sécurisé
+$('#validation').click(function(){
+  //Déclaration des variables en récupérant la valeur des id
+  var lastname = $('#lastname').val();
+  var firstname = $('#firstname').val();
+  var dateBirth = $('#dateBirth').val();
+  var job = $('#job').val();
+  var society = $('#society').val();
+  var cityBirth = $('#cityBirth').val();
+  //Déclaration des regex
+  //Regex pour les textes classiques
+  var regexText = /^[A-Za-z\-àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœç\ ]+$/;
+  //Regex pour la date de naissance
+  var regexDateBirth = /^((?:0[0-9])|(?:[1-2][0-9])|(?:3[0-1]))\/((?:0[1-9])|(?:1[0-2]))\/(\d{4})$/;
+  //Test des regex sur chaque variables
+  if (regexText.test(lastname) && regexText.test(firstname) && regexDateBirth.test(dateBirth) && regexText.test(job) && regexText.test(society) && regexText.test(cityBirth)) {
+    //Message qui résume l'ensemble du formulaire si tous les caractères sont corrects.
+    alert(firstname + ' ' + lastname + ', né le ' + dateBirth + ' à ' + cityBirth + ' actuellement ' + job + ' à ' + society );
+  }
+  else {
+    alert('Le formulaire n\'est pas correct, veuillez saisir des caractères valides.');
+  }
+});
+  </script>
+</html>
